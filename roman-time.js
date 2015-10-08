@@ -13,17 +13,18 @@ else {
 
 function toRoman(digit) {
     var str = '';
-    while (digit !=0) {
-        for (var i = 0; i < magicDigits.length; i++) {
-            var current = magicDigits[i];
-            if (digit >= current) {
+    for (var i = 0; i < magicDigits.length; i++) {
+        var current = magicDigits[i];
+        if (digit >= current) {
+            var a = parseInt(digit / current);
+            digit -= a * current;
+            while (a > 0) {
                 str += dict[current];
-                digit -= current;
-                break;
+                a--;
             }
         }
     }
-    return str == '' ? '-' : str;
+    return str == '' ? 'N' : str;
 }
 
 function toAmazingGraphic(time) {
@@ -40,8 +41,8 @@ function toAmazingGraphic(time) {
         'X' : ['o o',
                ' o ',
                'o o'],
-        '-' : ['   ',
-               '{ }',
+        'N' : ['   ',
+               '= =',
                '   '],
         ':' : [' [] ',
                '    ',
